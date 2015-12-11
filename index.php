@@ -8,7 +8,7 @@
 		<section>
 			<form  id="monForm" action="index.php" method="post">
 				<fieldset>
-					<legend> Projet Ghost: </legend>
+					<legend> Projet-Ghost </legend>
 						<thead>
 							<tr>
 								<td> Saisir Adresse IP:</td>
@@ -42,7 +42,7 @@
 													}				
 												}
 											}
-											elseif (isset($_POST['modifier'])) {
+											elseif (isset($_POST['modifier']) ) {
 												$requ = "update machine set ip ='".$_POST['ip']."'";
 												$res = mysql_query($requ,$conn);
 												if (!$res) {
@@ -82,13 +82,28 @@
 									</tr>
 										
 										<?php 
+
 											if(isset($_POST['valider'])){
 												if(!empty($_POST['options']))
 												{
 													foreach($_POST['options'] as $val){
 														echo "<tr><td>".$val."</td></tr>";
+														
+
 														}
 												}
+											}
+											if(isset($_POST['executer'])){
+												$var1="";
+												foreach($_POST['options'] as $val){
+														//echo "&nbsp;".$val."&nbsp;";
+														 $var1 = $var1 . "&nbsp;".$val."&nbsp;";
+
+
+														}
+														echo $var1;
+														/*$output =shell_exec("dir");
+														echo "<pre>".$output."</pre>";*/
 											}
 
 										?>
@@ -97,7 +112,7 @@
 							</table>
 				</fieldset><br/>
 							<input type="submit" value="Valider La Selection" name='valider' /><br/><br/>
-							<input type="button" value="Executer" onClick="document.location.href='#" />
+							<input type="submit" value="Executer" name='executer' />
 		</form>
 	</body>
 </html>
